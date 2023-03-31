@@ -1,0 +1,55 @@
+{
+ "train_csv": "dev.csv",
+ "dev_csv": "test.csv",
+ "backbone": "resnet18",
+ "width": 256,
+ "height": 256,
+ "long_side": 256,
+ "fix_ratio": true,
+ "pixel_mean": 128.0,
+ "pixel_std": 64.0,
+ "use_pixel_std": false,
+ "gamma": 2,
+ "lse_gamma": 0.5,
+ "num_tasks": 1,
+ "num_classes": [
+  1
+ ],
+ "loss_weight": [
+  1
+ ],
+ "pos_weight": [
+  1.0
+ ],
+ "train_batch_size": 128,
+ "dev_batch_size": 12,
+ "pretrained": true,
+ "log_every": 1,
+ "dev_every": 10,
+ "epoch": 10,
+ "pooling": [
+  "AVG_MAX"
+ ],
+ "fc_bn": true,
+ "attention_map": "None",
+ "transforms": false,
+ "norm_type": "BatchNorm",
+ "optimizer": "Adam",
+ "criterion": "BCE",
+ "lr": 0.0001,
+ "lr_factor": 0.1,
+ "lr_epochs": [
+  3,
+  4,
+  5
+ ],
+ "momentum": 0.9,
+ "weight_decay": 0.0003,
+ "best_target": "auc",
+ "loss_batch_weight": true,
+ "enhance_index": [
+  2
+ ],
+ "enhance_times": 4,
+ "save_index": [0]
+}
