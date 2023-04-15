@@ -32,7 +32,7 @@ with open(args.cfg_path) as f:
     cfg = edict(json.load(f))
 device = torch.device('cuda:{}'.format(args.device_id))    
 model = Classifier(cfg).to(device)
-model.load_state_dict(torch.load(args.load_path + '/0_best.ckpt', map_location=device)['state_dict'])
+model.load_state_dict(torch.load(args.load_path + '/0_1_best.ckpt', map_location=device)['state_dict'])
 model.eval()
 
 
@@ -91,10 +91,18 @@ def get_prediction(image_bytes):
 @app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
+        print(request)
         file = request.files['file']
+        print(file)
         img_bytes = file.read()
         pred = get_prediction(image_bytes=img_bytes)
-        return jsonify({'class_id': "ripeness", 'score': ','.join(map(lambda x: '{:.5f}'.format(x), pred[:, 0]))})
+        pred_label = np.argmax(pred, axis=0, keepdims=False)
+        class_id = pred_label[0]
+        if class_id == 0:
+            class_name = '香蕉'
+        else:
+            class_name = '芒果'
+        return jsonify({'水果种类': class_name, '成熟度': '{:.3f}'.format(float(pred[class_id])), '存放天数': '{:.3f}'.format(15*(1-float(pred[class_id])))})
 
 
 if __name__ == '__main__':

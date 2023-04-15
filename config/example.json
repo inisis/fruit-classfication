@@ -11,14 +11,17 @@
  "use_pixel_std": false,
  "gamma": 2,
  "lse_gamma": 0.5,
- "num_tasks": 1,
+ "num_tasks": 2,
  "num_classes": [
+  1,
   1
  ],
  "loss_weight": [
+  1,
   1
  ],
  "pos_weight": [
+  1.0,
   1.0
  ],
  "train_batch_size": 128,
@@ -28,6 +31,7 @@
  "dev_every": 10,
  "epoch": 10,
  "pooling": [
+  "AVG_MAX",
   "AVG_MAX"
  ],
  "fc_bn": true,
@@ -48,8 +52,9 @@
  "best_target": "auc",
  "loss_batch_weight": true,
  "enhance_index": [
-  2
+  1,
+  1
  ],
  "enhance_times": 4,
- "save_index": [0]
+ "save_index": [0, 1]
 }

@@ -55,7 +55,7 @@ def test_epoch(cfg, args, model, dataloader, out_csv_path):
     dataiter = iter(dataloader)
     num_tasks = len(cfg.num_classes)
 
-    test_header = ['Path', 'Ripe']
+    test_header = ['Path', 'Banana', 'Mongo']
 
     with open(out_csv_path, 'w') as f:
         f.write(','.join(test_header) + '\n')
